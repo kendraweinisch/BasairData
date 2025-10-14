@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Basair Data provides AI-powered business intelligence and data analytics solutions for growing companies worldwide.">
+    <title>Basair Data | Business Intelligence & Analytics Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a3a5f;
+            --secondary: #d4af37;
+            --accent: #00a896;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+        
+        body[dir="rtl"] {
+            text-align: right;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn:focus {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0f2a46;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #c19b25;
+            transform: translateY(-2px);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Skip to main content link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            text-decoration: none;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        body[dir="rtl"] nav ul li {
+            margin-left: 0;
+            margin-right: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav ul li a:focus {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        body[dir="rtl"] nav ul li a::after {
+            left: auto;
+            right: 0;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .lang-switcher {
+            background: none;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .lang-switcher:focus {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+        
+        .lang-switcher:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+            padding: 5px;
+        }
+        
+        .mobile-menu-btn:focus {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(26, 58, 95, 0.85), rgba(26, 58, 95, 0.9)), url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            color: white;
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .problem {
+            background-color: var(--light);
+        }
+        
+        .problem-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .problem-list {
+            text-align: left;
+            max-width: 700px;
+            margin: 2rem auto 0;
+            list-style: none;
+        }
+        
+        body[dir="rtl"] .problem-list {
+            text-align: right;
+        }
+        
+        .problem-list li {
+            margin-bottom: 1rem;
+            padding: 10px 0;
+            position: relative;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .problem-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .client-types {
+            background-color: white;
+        }
+        
+        .client-types-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .client-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 2rem;
+        }
+        
+        .client-type-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        body[dir="rtl"] .client-type-card {
+            border-left: none;
+            border-right: 4px solid var(--secondary);
+        }
+        
+        .client-type-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .client-type-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .client-type-card ul {
+            list-style: none;
+        }
+        
+        .client-type-card ul li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        body[dir="rtl"] .client-type-card ul li {
+            padding-left: 0;
+            padding-right: 20px;
+        }
+        
+        .client-type-card ul li:before {
+            content: "•";
+            color: var(--secondary);
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        
+        body[dir="rtl"] .client-type-card ul li:before {
+            left: auto;
+            right: 0;
+        }
+        
+        .solution-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 3rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .card:focus-within {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-img {
+            height: 200px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 25px;
+        }
+        
+        .features {
+            background-color: var(--light);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .feature-item:focus-within {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cta {
+            background: linear-gradient(rgba(26, 58, 95, 0.9), rgba(26, 58, 95, 0.9)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            color: white;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .cta-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:focus {
+            outline: 1px solid var(--secondary);
+            outline-offset: 2px;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .close-modal:hover {
+            color: var(--dark);
+        }
+        
+        .contact-form {
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: 2px solid var(--secondary);
+            border-color: var(--secondary);
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            body[dir="rtl"] nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            body[dir="rtl"] .mobile-menu-btn {
+                right: auto;
+                left: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-btns, .cta-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body dir="ltr">
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>Basair <span>Data</span></h1>
+            </div>
+            <button class="mobile-menu-btn" aria-expanded="false" aria-controls="main-menu">
+                <span class="sr-only">Menu</span>
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+            <nav>
+                <ul id="main-menu">
+                    <li><a href="#solutions" data-translate="solutions">Solutions</a></li>
+                    <li><a href="#features" data-translate="features">Features</a></li>
+                    <li><a href="#clients" data-translate="clients">Our Clients</a></li>
+                    <li><a href="#" id="contact-link" data-translate="contact">Contact</a></li>
+                    <li><button class="lang-switcher" id="langToggle" aria-label="Switch language">العربية</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1 data-translate="heroTitle">Transform Data into Decisions</h1>
+            <p data-translate="heroText">Basair Data delivers intelligent analytics solutions that help growing businesses worldwide unlock the full potential of their data. Move beyond spreadsheets to actionable insights.</p>
+            <div class="hero-btns">
+                <a href="#" class="btn btn-primary" id="demo-btn" data-translate="demoBtn">Request a Demo</a>
+                <a href="#solutions" class="btn btn-secondary" data-translate="solutionsBtn">Explore Solutions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Problem Section -->
+        <section class="problem" id="problem">
+            <div class="container">
+                <div class="problem-content">
+                    <h2 data-translate="problemTitle">From Data Overload to Strategic Advantage</h2>
+                    <p data-translate="problemText1">Modern businesses collect vast amounts of data, but extracting meaningful insights remains a challenge. Without the right tools, companies struggle to convert information into actionable strategies.</p>
+                    
+                    <ul class="problem-list">
+                        <li data-translate="problemItem1">Difficulty identifying key performance drivers</li>
+                        <li data-translate="problemItem2">Limited visibility into customer behavior patterns</li>
+                        <li data-translate="problemItem3">Manual reporting processes consuming valuable time</li>
+                        <li data-translate="problemItem4">Inability to forecast trends accurately</li>
+                        <li data-translate="problemItem5">Data silos preventing holistic business views</li>
+                    </ul>
+                    
+                    <p data-translate="problemText2">Basair Data addresses these challenges with intuitive, powerful analytics designed for business users.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Client Types Section -->
+        <section class="client-types" id="clients">
+            <div class="container">
+                <div class="client-types-content">
+                    <h2 data-translate="clientsTitle">Who We Work With</h2>
+                    <p data-translate="clientsText">Our solutions are tailored for organizations that value data-driven decision making and need powerful yet accessible analytics tools.</p>
+                    
+                    <div class="client-types-grid">
+                        <div class="client-type-card">
+                            <h3 data-translate="clientType1Title">Growing Enterprises</h3>
+                            <ul>
+                                <li data-translate="clientType1Item1">Companies with 50-500 employees</li>
+                                <li data-translate="clientType1Item2">Expanding into new markets</li>
+                                <li data-translate="clientType1Item3">Seeking operational efficiency</li>
+                                <li data-translate="clientType1Item4">Need scalable analytics solutions</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="client-type-card">
+                            <h3 data-translate="clientType2Title">Industry Leaders</h3>
+                            <ul>
+                                <li data-translate="clientType2Item1">Retail and e-commerce businesses</li>
+                                <li data-translate="clientType2Item2">Financial services organizations</li>
+                                <li data-translate="clientType2Item3">Healthcare providers</li>
+                                <li data-translate="clientType2Item4">Manufacturing companies</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="client-type-card">
+                            <h3 data-translate="clientType3Title">Data-Mature Organizations</h3>
+                            <ul>
+                                <li data-translate="clientType3Item1">Established data infrastructure</li>
+                                <li data-translate="clientType3Item2">Seeking advanced analytics</li>
+                                <li data-translate="clientType3Item3">Need predictive capabilities</li>
+                                <li data-translate="clientType3Item4">Focus on competitive advantage</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <section class="solution" id="solutions">
+            <div class="container">
+                <h2 data-translate="solutionTitle">Intelligent Analytics Solutions</h2>
+                <p class="text-center" data-translate="solutionText">Our platform transforms how companies interact with their data, providing clarity and actionable intelligence at every level of your organization.</p>
+                
+                <div class="solution-cards">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Middle Eastern business professionals analyzing data on large screens">
+                        </div>
+                        <div class="card-content">
+                            <h3 data-translate="solution1Title">Automated Analytics</h3>
+                            <p data-translate="solution1Text">Connect disparate data sources into unified dashboards that update automatically. Focus on decisions, not data preparation.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Middle Eastern executives reviewing business analytics in a modern office">
+                        </div>
+                        <div class="card-content">
+                            <h3 data-translate="solution2Title">Root Cause Analysis</h3>
+                            <p data-translate="solution2Text">Quickly identify why key metrics change with our intelligent analysis engine. Understand the drivers behind your business performance.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Business team in the Middle East collaborating on data-driven strategy">
+                        </div>
+                        <div class="card-content">
+                            <h3 data-translate="solution3Title">Predictive Insights</h3>
+                            <p data-translate="solution3Text">Anticipate future trends and opportunities with our forecasting tools. Make proactive decisions based on data-driven projections.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="container">
+                <h2 data-translate="featuresTitle">Platform Capabilities</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain" aria-hidden="true"></i>
+                        </div>
+                        <h3 data-translate="feature1Title">AI-Powered Analysis</h3>
+                        <p data-translate="feature1Text">Our system automatically surfaces meaningful patterns and correlations in your data, highlighting opportunities you might otherwise miss.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        </div>
+                        <h3 data-translate="feature2Title">Industry-Specific Metrics</h3>
+                        <p data-translate="feature2Text">Pre-configured with relevant KPIs for your sector, with customizable dashboards that align with your business objectives.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt" aria-hidden="true"></i>
+                        </div>
+                        <h3 data-translate="feature4Title">Real-Time Monitoring</h3>
+                        <p data-translate="feature4Text">Track performance with live dashboards and automated alerts. Respond quickly to changes in your business environment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta" id="contact">
+            <div class="container">
+                <h2 data-translate="ctaTitle">Begin Your Data Transformation</h2>
+                <p data-translate="ctaText">Discover how Basair Data can help your organization make smarter decisions, identify new opportunities, and drive sustainable growth.</p>
+                
+                <div class="cta-btns">
+                    <a href="#" class="btn btn-secondary" id="consultation-btn" data-translate="consultationBtn">Schedule a Consultation</a>
+                    <a href="#features" class="btn btn-primary" data-translate="featuresBtn">View Platform Features</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Basair Data</h3>
+                    <p data-translate="footerDesc">Intelligent analytics solutions for forward-thinking businesses.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 data-translate="footerSolutions">Solutions</h3>
+                    <ul>
+                        <li><a href="#solutions" data-translate="footerBI">Business Intelligence</a></li>
+                        <li><a href="#solutions" data-translate="footerAnalytics">Performance Analytics</a></li>
+                        <li><a href="#solutions" data-translate="footerModeling">Predictive Modeling</a></li>
+                        <li><a href="#solutions" data-translate="footerIntegration">Data Integration</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 data-translate="footerCompany">Company</h3>
+                    <ul>
+                        <li><a href="#clients" data-translate="footerAbout">Our Clients</a></li>
+                        <li><a href="#" id="footer-contact-link">Contact</a></li>
+                        <li><a href="#" data-translate="footerPrivacy">Privacy Policy</a></li>
+                        <li><a href="#" data-translate="footerTerms">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 data-translate="footerConnect">Connect</h3>
+                    <ul>
+                        <li><a href="#" aria-label="Visit our LinkedIn page">LinkedIn</a></li>
+                        <li><a href="#" aria-label="Visit our Twitter page">Twitter</a></li>
+                        <li><a href="#" aria-label="Read our blog">Blog</a></li>
+                        <li><a href="#" data-translate="footerSupport">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p data-translate="copyright">© 2025 Basair Data. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div class="modal" id="contact-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-modal" aria-label="Close contact form">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 data-translate="contactTitle">Contact Our Team</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name" data-translate="nameLabel">Full Name</label>
+                        <input type="text" id="name" name="name" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-translate="emailLabel">Email Address</label>
+                        <input type="email" id="email" name="email" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="company" data-translate="companyLabel">Company</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-translate="messageLabel">How can we help you?</label>
+                        <textarea id="message" name="message" required aria-required="true"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-translate="sendBtn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Translation content
+        const translations = {
+            en: {
+                // Navigation
+                "solutions": "Solutions",
+                "features": "Features",
+                "clients": "Our Clients",
+                "contact": "Contact",
+                
+                // Hero Section
+                "heroTitle": "Transform Data into Decisions",
+                "heroText": "Basair Data delivers intelligent analytics solutions that help growing businesses worldwide unlock the full potential of their data. Move beyond spreadsheets to actionable insights.",
+                "demoBtn": "Request a Demo",
+                "solutionsBtn": "Explore Solutions",
+                
+                // Problem Section
+                "problemTitle": "From Data Overload to Strategic Advantage",
+                "problemText1": "Modern businesses collect vast amounts of data, but extracting meaningful insights remains a challenge. Without the right tools, companies struggle to convert information into actionable strategies.",
+                "problemItem1": "Difficulty identifying key performance drivers",
+                "problemItem2": "Limited visibility into customer behavior patterns",
+                "problemItem3": "Manual reporting processes consuming valuable time",
+                "problemItem4": "Inability to forecast trends accurately",
+                "problemItem5": "Data silos preventing holistic business views",
+                "problemText2": "Basair Data addresses these challenges with intuitive, powerful analytics designed for business users.",
+                
+                // Client Types Section
+                "clientsTitle": "Who We Work With",
+                "clientsText": "Our solutions are tailored for organizations that value data-driven decision making and need powerful yet accessible analytics tools.",
+                "clientType1Title": "Growing Enterprises",
+                "clientType1Item1": "Companies with 50-500 employees",
+                "clientType1Item2": "Expanding into new markets",
+                "clientType1Item3": "Seeking operational efficiency",
+                "clientType1Item4": "Need scalable analytics solutions",
+                "clientType2Title": "Industry Leaders",
+                "clientType2Item1": "Retail and e-commerce businesses",
+                "clientType2Item2": "Financial services organizations",
+                "clientType2Item3": "Healthcare providers",
+                "clientType2Item4": "Manufacturing companies",
+                "clientType3Title": "Data-Mature Organizations",
+                "clientType3Item1": "Established data infrastructure",
+                "clientType3Item2": "Seeking advanced analytics",
+                "clientType3Item3": "Need predictive capabilities",
+                "clientType3Item4": "Focus on competitive advantage",
+                
+                // Solution Section
+                "solutionTitle": "Intelligent Analytics Solutions",
+                "solutionText": "Our platform transforms how companies interact with their data, providing clarity and actionable intelligence at every level of your organization.",
+                "solution1Title": "Automated Analytics",
+                "solution1Text": "Connect disparate data sources into unified dashboards that update automatically. Focus on decisions, not data preparation.",
+                "solution2Title": "Root Cause Analysis",
+                "solution2Text": "Quickly identify why key metrics change with our intelligent analysis engine. Understand the drivers behind your business performance.",
+                "solution3Title": "Predictive Insights",
+                "solution3Text": "Anticipate future trends and opportunities with our forecasting tools. Make proactive decisions based on data-driven projections.",
+                
+                // Features Section
+                "featuresTitle": "Platform Capabilities",
+                "feature1Title": "AI-Powered Analysis",
+                "feature1Text": "Our system automatically surfaces meaningful patterns and correlations in your data, highlighting opportunities you might otherwise miss.",
+                "feature2Title": "Industry-Specific Metrics",
+                "feature2Text": "Pre-configured with relevant KPIs for your sector, with customizable dashboards that align with your business objectives.",
+                "feature4Title": "Real-Time Monitoring",
+                "feature4Text": "Track performance with live dashboards and automated alerts. Respond quickly to changes in your business environment.",
+                
+                // CTA Section
+                "ctaTitle": "Begin Your Data Transformation",
+                "ctaText": "Discover how Basair Data can help your organization make smarter decisions, identify new opportunities, and drive sustainable growth.",
+                "consultationBtn": "Schedule a Consultation",
+                "featuresBtn": "View Platform Features",
+                
+                // Contact Section
+                "contactTitle": "Contact Our Team",
+                "nameLabel": "Full Name",
+                "emailLabel": "Email Address",
+                "companyLabel": "Company",
+                "messageLabel": "How can we help you?",
+                "sendBtn": "Send Message",
+                
+                // Footer
+                "footerDesc": "Intelligent analytics solutions for forward-thinking businesses.",
+                "footerSolutions": "Solutions",
+                "footerBI": "Business Intelligence",
+                "footerAnalytics": "Performance Analytics",
+                "footerModeling": "Predictive Modeling",
+                "footerIntegration": "Data Integration",
+                "footerCompany": "Company",
+                "footerAbout": "Our Clients",
+                "footerPrivacy": "Privacy Policy",
+                "footerTerms": "Terms of Service",
+                "footerConnect": "Connect",
+                "footerSupport": "Support",
+                "copyright": "© 2025 Basair Data. All rights reserved."
+            },
+            ar: {
+                // Navigation
+                "solutions": "الحلول",
+                "features": "الميزات",
+                "clients": "عملاؤنا",
+                "contact": "اتصل بنا",
+                
+                // Hero Section
+                "heroTitle": "حول البيانات إلى قرارات",
+                "heroText": "تقدم Basair Data حلول تحليلات ذكية تساعد الشركات النامية حول العالم على إطلاق الإمكانات الكاملة لبياناتها. انتقل من الجداول الإلكترونية إلى رؤى قابلة للتنفيذ.",
+                "demoBtn": "طلب عرض تجريبي",
+                "solutionsBtn": "استكشاف الحلول",
+                
+                // Problem Section
+                "problemTitle": "من عبء البيانات إلى الميزة الاستراتيجية",
+                "problemText1": "تجمع الشركات الحديثة كميات هائلة من البيانات، لكن استخلاص رؤى ذات معنى يظل تحدياً. بدون الأدوات المناسبة، تواجه الشركات صعوبة في تحويل المعلومات إلى استراتيجيات قابلة للتنفيذ.",
+                "problemItem1": "صعوبة تحديد محركات الأداء الرئيسية",
+                "problemItem2": "رؤية محدودة لأنماط سلوك العملاء",
+                "problemItem3": "عمليات إعداد التقارير اليدوية تستهلك وقتاً ثميناً",
+                "problemItem4": "عدم القدرة على التنبؤ بالاتجاهات بدقة",
+                "problemItem5": "جزر البيانات تمنع الرؤية الشاملة للأعمال",
+                "problemText2": "تتعامل Basair Data مع هذه التحديات من خلال تحليلات قوية وبديهية مصممة لمستخدمي الأعمال.",
+                
+                // Client Types Section
+                "clientsTitle": "من نعمل معهم",
+                "clientsText": "حلولنا مصممة خصيصاً للمنظمات التي تقدر اتخاذ القرارات القائمة على البيانات وتحتاج إلى أدوات تحليلية قوية وسهلة الاستخدام.",
+                "clientType1Title": "الشركات النامية",
+                "clientType1Item1": "الشركات التي تضم 50-500 موظف",
+                "clientType1Item2": "تتوسع في أسواق جديدة",
+                "clientType1Item3": "تسعى لتحقيق الكفاءة التشغيلية",
+                "clientType1Item4": "تحتاج إلى حلول تحليلات قابلة للتطوير",
+                "clientType2Title": "رواد الصناعة",
+                "clientType2Item1": "شركات التجزئة والتجارة الإلكترونية",
+                "clientType2Item2": "مؤسسات الخدمات المالية",
+                "clientType2Item3": "مقدمي الرعاية الصحية",
+                "clientType2Item4": "شركات التصنيع",
+                "clientType3Title": "المنظمات الناضجة في البيانات",
+                "clientType3Item1": "بنية تحتية راسخة للبيانات",
+                "clientType3Item2": "تسعى إلى تحليلات متقدمة",
+                "clientType3Item3": "تحتاج إلى قدرات تنبؤية",
+                "clientType3Item4": "تركز على الميزة التنافسية",
+                
+                // Solution Section
+                "solutionTitle": "حلول تحليلات ذكية",
+                "solutionText": "تحول منصتنا طريقة تفاعل الشركات مع بياناتها، وتوفر الوضوح والذكاء القابل للتنفيذ على كل مستوى في مؤسستك.",
+                "solution1Title": "تحليلات آلية",
+                "solution1Text": "ربط مصادر البيانات المتباينة في لوحات معلومات موحدة يتم تحديثها تلقائياً. ركز على القرارات، وليس إعداد البيانات.",
+                "solution2Title": "تحليل السبب الجذري",
+                "solution2Text": "حدد بسرعة سبب تغير المقاييس الرئيسية بمحرك التحليل الذكي الخاص بنا. افهم المحركات الكامنة وراء أداء عملك.",
+                "solution3Title": "رؤى تنبؤية",
+                "solution3Text": "توقع الاتجاهات والفرص المستقبلية بأدوات التنبؤ الخاصة بنا. اتخذ قرارات استباقية بناءً على توقعات مدعومة بالبيانات.",
+                
+                // Features Section
+                "featuresTitle": "إمكانيات المنصة",
+                "feature1Title": "تحليل مدعوم بالذكاء الاصطناعي",
+                "feature1Text": "يكشف نظامنا تلقائياً عن الأنماط والعلاقات ذات المعنى في بياناتك، مع إبراز الفرص التي قد تفوتك بطريقة أخرى.",
+                "feature2Title": "مقاييس مخصصة للقطاع",
+                "feature2Text": "معد مسبقاً بمؤشرات الأداء الرئيسية ذات الصلة بقطاعك، مع لوحات معلومات قابلة للتخصيص تتماشى مع أهداف عملك.",
+                "feature4Title": "مراقبة في الوقت الفعلي",
+                "feature4Text": "تتبع الأداء بلوحات المعلومات الحية والتنبيهات الآلية. استجب بسرعة للتغيرات في بيئة عملك.",
+                
+                // CTA Section
+                "ctaTitle": "ابدأ تحول بياناتك",
+                "ctaText": "اكتشف كيف يمكن لـ Basair Data مساعدة مؤسستك على اتخاذ قرارات أكثر ذكاءً، وتحديد فرص جديدة، ودفع النمو المستدام.",
+                "consultationBtn": "جدولة استشارة",
+                "featuresBtn": "عرض ميزات المنصة",
+                
+                // Contact Section
+                "contactTitle": "اتصل بفريقنا",
+                "nameLabel": "الاسم الكامل",
+                "emailLabel": "البريد الإلكتروني",
+                "companyLabel": "الشركة",
+                "messageLabel": "كيف يمكننا مساعدتك؟",
+                "sendBtn": "إرسال الرسالة",
+                
+                // Footer
+                "footerDesc": "حلول تحليلات ذكية للشركات ذات التفكير المستقبلي.",
+                "footerSolutions": "الحلول",
+                "footerBI": "الذكاء الاصطناعي للأعمال",
+                "footerAnalytics": "تحليلات الأداء",
+                "footerModeling": "النمذجة التنبؤية",
+                "footerIntegration": "دمج البيانات",
+                "footerCompany": "الشركة",
+                "footerAbout": "عملاؤنا",
+                "footerPrivacy": "سياسة الخصوصية",
+                "footerTerms": "شروط الخدمة",
+                "footerConnect": "تواصل معنا",
+                "footerSupport": "الدعم",
+                "copyright": "© 2025 Basair Data. جميع الحقوق محفوظة."
+            }
+        };
+
+        // Current language
+        let currentLang = 'en';
+        
+        // Modal functionality
+        const modal = document.getElementById('contact-modal');
+        const contactLinks = document.querySelectorAll('#contact-link, #footer-contact-link, #demo-btn, #consultation-btn');
+        const closeModal = document.getElementById('close-modal');
+        
+        // Open modal when contact links are clicked
+        contactLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+        });
+        
+        // Close modal when X is clicked
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when clicking outside the modal content
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Language toggle functionality
+        document.getElementById('langToggle').addEventListener('click', function() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            translatePage(currentLang);
+            this.textContent = currentLang === 'en' ? 'العربية' : 'English';
+            this.setAttribute('aria-label', currentLang === 'en' ? 'Switch to Arabic' : 'Switch to English');
+        });
+        
+        // Function to translate the page
+        function translatePage(lang) {
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update page direction for RTL languages
+            if (lang === 'ar') {
+                document.body.setAttribute('dir', 'rtl');
+                document.body.setAttribute('lang', 'ar');
+            } else {
+                document.body.setAttribute('dir', 'ltr');
+                document.body.setAttribute('lang', 'en');
+            }
+        }
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mainMenu = document.getElementById('main-menu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            mainMenu.classList.toggle('show');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            if (!anchor.classList.contains('modal-trigger')) {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        // Close mobile menu if open
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        mainMenu.classList.remove('show');
+                        
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update focus for accessibility
+                        targetElement.setAttribute('tabindex', '-1');
+                        targetElement.focus();
+                        setTimeout(() => targetElement.removeAttribute('tabindex'), 1000);
+                    }
+                });
+            }
+        });
+        
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const message = currentLang === 'en' 
+                ? 'Thank you for your message. We will contact you soon.' 
+                : 'شكراً على رسالتك. سنتواصل معك قريباً.';
+            alert(message);
+            this.reset();
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            translatePage(currentLang);
+        });
+    </script>
+</body>
+</html>
