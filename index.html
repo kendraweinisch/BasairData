@@ -289,6 +289,7 @@
             max-width: 700px;
             margin: 2rem auto 0;
             list-style: none;
+            padding: 0;
         }
         
         body[dir="rtl"] .problem-list {
@@ -297,13 +298,28 @@
         
         .problem-list li {
             margin-bottom: 1rem;
-            padding: 10px 0;
+            padding: 15px 0;
             position: relative;
             border-bottom: 1px solid rgba(0,0,0,0.1);
+            display: flex;
+            align-items: flex-start;
         }
         
         .problem-list li:last-child {
             border-bottom: none;
+        }
+        
+        .problem-list li::before {
+            content: "•";
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-right: 15px;
+            line-height: 1;
+        }
+        
+        body[dir="rtl"] .problem-list li::before {
+            margin-right: 0;
+            margin-left: 15px;
         }
         
         .client-types {
@@ -618,6 +634,46 @@
             border: 0;
         }
         
+        /* Language selector styles */
+        .lang-selector {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .lang-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .lang-dropdown.show {
+            display: block;
+        }
+        
+        .lang-option {
+            color: var(--primary);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1rem;
+        }
+        
+        .lang-option:hover {
+            background-color: var(--light);
+        }
+        
         @media (max-width: 992px) {
             h1 {
                 font-size: 2.5rem;
@@ -686,6 +742,11 @@
             section {
                 padding: 60px 0;
             }
+            
+            .lang-dropdown {
+                right: auto;
+                left: 0;
+            }
         }
         
         @media (max-width: 576px) {
@@ -734,7 +795,17 @@
                     <li><a href="#features" data-translate="features">Features</a></li>
                     <li><a href="#clients" data-translate="clients">Our Clients</a></li>
                     <li><a href="#" id="contact-link" data-translate="contact">Contact</a></li>
-                    <li><button class="lang-switcher" id="langToggle" aria-label="Switch language">العربية</button></li>
+                    <li class="lang-selector">
+                        <button class="lang-switcher" id="langToggle" aria-label="Switch language">
+                            <span id="currentLang">English</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="lang-dropdown" id="langDropdown">
+                            <button class="lang-option" data-lang="en">English</button>
+                            <button class="lang-option" data-lang="ar">العربية</button>
+                            <button class="lang-option" data-lang="ru">Русский</button>
+                        </div>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -1049,14 +1120,6 @@
                 "consultationBtn": "Schedule a Consultation",
                 "featuresBtn": "View Platform Features",
                 
-                // Contact Section
-                "contactTitle": "Contact Our Team",
-                "nameLabel": "Full Name",
-                "emailLabel": "Email Address",
-                "companyLabel": "Company",
-                "messageLabel": "How can we help you?",
-                "sendBtn": "Send Message",
-                
                 // Footer
                 "footerDesc": "Intelligent analytics solutions for forward-thinking businesses.",
                 "footerSolutions": "Solutions",
@@ -1070,7 +1133,15 @@
                 "footerTerms": "Terms of Service",
                 "footerConnect": "Connect",
                 "footerSupport": "Support",
-                "copyright": "© 2025 Basair Data. All rights reserved."
+                "copyright": "© 2025 Basair Data. All rights reserved.",
+                
+                // Contact Modal
+                "contactTitle": "Contact Our Team",
+                "nameLabel": "Full Name",
+                "emailLabel": "Email Address",
+                "companyLabel": "Company",
+                "messageLabel": "How can we help you?",
+                "sendBtn": "Send Message"
             },
             ar: {
                 // Navigation
@@ -1080,140 +1151,187 @@
                 "contact": "اتصل بنا",
                 
                 // Hero Section
-                "heroTitle": "حول البيانات إلى قرارات",
-                "heroText": "تقدم Basair Data حلول تحليلات ذكية تساعد الشركات النامية حول العالم على إطلاق الإمكانات الكاملة لبياناتها. انتقل من الجداول الإلكترونية إلى رؤى قابلة للتنفيذ.",
+                "heroTitle": "تحويل البيانات إلى قرارات",
+                "heroText": "تقدم باسير داتا حلول تحليلات ذكية تساعد الشركات النامية في جميع أنحاء العالم على إطلاق الإمكانات الكاملة لبياناتها. انتقل من جداول البيانات إلى رؤى قابلة للتنفيذ.",
                 "demoBtn": "طلب عرض تجريبي",
                 "solutionsBtn": "استكشاف الحلول",
                 
                 // Problem Section
-                "problemTitle": "من عبء البيانات إلى الميزة الاستراتيجية",
-                "problemText1": "تجمع الشركات الحديثة كميات هائلة من البيانات، لكن استخلاص رؤى ذات معنى يظل تحدياً. بدون الأدوات المناسبة، تواجه الشركات صعوبة في تحويل المعلومات إلى استراتيجيات قابلة للتنفيذ.",
+                "problemTitle": "من الحمل الزائد للبيانات إلى الميزة الاستراتيجية",
+                "problemText1": "تجمع الشركات الحديثة كميات هائلة من البيانات، لكن استخلاص رؤى ذات مغزى لا يزال يمثل تحديًا. بدون الأدوات المناسبة، تكافح الشركات لتحويل المعلومات إلى استراتيجيات قابلة للتنفيذ.",
                 "problemItem1": "صعوبة تحديد محركات الأداء الرئيسية",
                 "problemItem2": "رؤية محدودة لأنماط سلوك العملاء",
-                "problemItem3": "عمليات إعداد التقارير اليدوية تستهلك وقتاً ثميناً",
+                "problemItem3": "عمليات الإعداد التقارير اليدوية تستهلك وقتًا قيمًا",
                 "problemItem4": "عدم القدرة على التنبؤ بالاتجاهات بدقة",
                 "problemItem5": "جزر البيانات تمنع الرؤية الشاملة للأعمال",
-                "problemText2": "تتعامل Basair Data مع هذه التحديات من خلال تحليلات قوية وبديهية مصممة لمستخدمي الأعمال.",
+                "problemText2": "تتعامل باسير داتا مع هذه التحديات من خلال تحليلات بديهية وقوية مصممة لمستخدمي الأعمال.",
                 
                 // Client Types Section
-                "clientsTitle": "من نعمل معهم",
-                "clientsText": "حلولنا مصممة خصيصاً للمنظمات التي تقدر اتخاذ القرارات القائمة على البيانات وتحتاج إلى أدوات تحليلية قوية وسهلة الاستخدام.",
+                "clientsTitle": "مع من نعمل",
+                "clientsText": "تم تصميم حلولنا خصيصًا للمؤسسات التي تقدر اتخاذ القرارات القائمة على البيانات وتحتاج إلى أدوات تحليل قوية وسهلة الاستخدام.",
                 "clientType1Title": "الشركات النامية",
-                "clientType1Item1": "الشركات التي تضم 50-500 موظف",
+                "clientType1Item1": "شركات تضم 50-500 موظف",
                 "clientType1Item2": "تتوسع في أسواق جديدة",
                 "clientType1Item3": "تسعى لتحقيق الكفاءة التشغيلية",
                 "clientType1Item4": "تحتاج إلى حلول تحليلات قابلة للتطوير",
-                "clientType2Title": "رواد الصناعة",
+                "clientType2Title": "قادة الصناعة",
                 "clientType2Item1": "شركات التجزئة والتجارة الإلكترونية",
                 "clientType2Item2": "مؤسسات الخدمات المالية",
                 "clientType2Item3": "مقدمي الرعاية الصحية",
-                "clientType2Item4": "شركات التصنيع",
+                "clientType2Item4": "الشركات المصنعة",
                 "clientType3Title": "المنظمات الناضجة في البيانات",
                 "clientType3Item1": "بنية تحتية راسخة للبيانات",
-                "clientType3Item2": "تسعى إلى تحليلات متقدمة",
+                "clientType3Item2": "تسعى للحصول على تحليلات متقدمة",
                 "clientType3Item3": "تحتاج إلى قدرات تنبؤية",
-                "clientType3Item4": "تركز على الميزة التنافسية",
+                "clientType3Item4": "التركيز على الميزة التنافسية",
                 
                 // Solution Section
                 "solutionTitle": "حلول تحليلات ذكية",
-                "solutionText": "تحول منصتنا طريقة تفاعل الشركات مع بياناتها، وتوفر الوضوح والذكاء القابل للتنفيذ على كل مستوى في مؤسستك.",
+                "solutionText": "تعمل منصتنا على تحويل طريقة تفاعل الشركات مع بياناتها، وتوفر الوضوح والذكاء القابل للتنفيذ على كل مستوى في مؤسستك.",
                 "solution1Title": "تحليلات آلية",
-                "solution1Text": "ربط مصادر البيانات المتباينة في لوحات معلومات موحدة يتم تحديثها تلقائياً. ركز على القرارات، وليس إعداد البيانات.",
+                "solution1Text": "ربط مصادر البيانات المتناثرة في لوحات معلومات موحدة يتم تحديثها تلقائيًا. ركز على القرارات، وليس إعداد البيانات.",
                 "solution2Title": "تحليل السبب الجذري",
-                "solution2Text": "حدد بسرعة سبب تغير المقاييس الرئيسية بمحرك التحليل الذكي الخاص بنا. افهم المحركات الكامنة وراء أداء عملك.",
+                "solution2Text": "حدد بسرعة سبب تغير المقاييس الرئيسية باستخدام محرك التحليل الذكي لدينا. فهم المحركات الكامنة وراء أداء عملك.",
                 "solution3Title": "رؤى تنبؤية",
-                "solution3Text": "توقع الاتجاهات والفرص المستقبلية بأدوات التنبؤ الخاصة بنا. اتخذ قرارات استباقية بناءً على توقعات مدعومة بالبيانات.",
+                "solution3Text": "توقع الاتجاهات والفرص المستقبلية باستخدام أدوات التنبؤ لدينا. اتخذ قرارات استباقية بناءً على التوقعات القائمة على البيانات.",
                 
                 // Features Section
-                "featuresTitle": "إمكانيات المنصة",
+                "featuresTitle": "قدرات المنصة",
                 "feature1Title": "تحليل مدعوم بالذكاء الاصطناعي",
-                "feature1Text": "يكشف نظامنا تلقائياً عن الأنماط والعلاقات ذات المعنى في بياناتك، مع إبراز الفرص التي قد تفوتك بطريقة أخرى.",
-                "feature2Title": "مقاييس مخصصة للقطاع",
-                "feature2Text": "معد مسبقاً بمؤشرات الأداء الرئيسية ذات الصلة بقطاعك، مع لوحات معلومات قابلة للتخصيص تتماشى مع أهداف عملك.",
+                "feature1Text": "يكشف نظامنا تلقائيًا عن الأنماط والارتباطات ذات المغزى في بياناتك، مما يسلط الضوء على الفرص التي قد تفوتك.",
+                "feature2Title": "مقاييس خاصة بالصناعة",
+                "feature2Text": "معدة مسبقًا بمؤشرات الأداء الرئيسية ذات الصلة بقطاعك، مع لوحات معلومات قابلة للتخصيص تتماشى مع أهداف عملك.",
                 "feature4Title": "مراقبة في الوقت الفعلي",
-                "feature4Text": "تتبع الأداء بلوحات المعلومات الحية والتنبيهات الآلية. استجب بسرعة للتغيرات في بيئة عملك.",
+                "feature4Text": "تتبع الأداء باستخدام لوحات المعلومات الحية والتنبيهات الآلية. استجب بسرعة للتغيرات في بيئة عملك.",
                 
                 // CTA Section
                 "ctaTitle": "ابدأ تحول بياناتك",
-                "ctaText": "اكتشف كيف يمكن لـ Basair Data مساعدة مؤسستك على اتخاذ قرارات أكثر ذكاءً، وتحديد فرص جديدة، ودفع النمو المستدام.",
+                "ctaText": "اكتشف كيف يمكن لـ باسير داتا مساعدة مؤسستك على اتخاذ قرارات أكثر ذكاءً، وتحديد فرص جديدة، ودفع النمو المستدام.",
                 "consultationBtn": "جدولة استشارة",
                 "featuresBtn": "عرض ميزات المنصة",
-                
-                // Contact Section
-                "contactTitle": "اتصل بفريقنا",
-                "nameLabel": "الاسم الكامل",
-                "emailLabel": "البريد الإلكتروني",
-                "companyLabel": "الشركة",
-                "messageLabel": "كيف يمكننا مساعدتك؟",
-                "sendBtn": "إرسال الرسالة",
                 
                 // Footer
                 "footerDesc": "حلول تحليلات ذكية للشركات ذات التفكير المستقبلي.",
                 "footerSolutions": "الحلول",
-                "footerBI": "الذكاء الاصطناعي للأعمال",
+                "footerBI": "ذكاء الأعمال",
                 "footerAnalytics": "تحليلات الأداء",
                 "footerModeling": "النمذجة التنبؤية",
-                "footerIntegration": "دمج البيانات",
+                "footerIntegration": "تكامل البيانات",
                 "footerCompany": "الشركة",
                 "footerAbout": "عملاؤنا",
                 "footerPrivacy": "سياسة الخصوصية",
                 "footerTerms": "شروط الخدمة",
                 "footerConnect": "تواصل معنا",
                 "footerSupport": "الدعم",
-                "copyright": "© 2025 Basair Data. جميع الحقوق محفوظة."
+                "copyright": "© 2025 باسير داتا. جميع الحقوق محفوظة.",
+                
+                // Contact Modal
+                "contactTitle": "اتصل بفريقنا",
+                "nameLabel": "الاسم الكامل",
+                "emailLabel": "عنوان البريد الإلكتروني",
+                "companyLabel": "الشركة",
+                "messageLabel": "كيف يمكننا مساعدتك؟",
+                "sendBtn": "إرسال الرسالة"
+            },
+            ru: {
+                // Navigation
+                "solutions": "Решения",
+                "features": "Функции",
+                "clients": "Наши клиенты",
+                "contact": "Контакты",
+                
+                // Hero Section
+                "heroTitle": "Превратите данные в решения",
+                "heroText": "Basair Data предоставляет интеллектуальные аналитические решения, которые помогают растущим компаниям по всему миру раскрыть полный потенциал своих данных. Перейдите от электронных таблиц к действенным выводам.",
+                "demoBtn": "Запросить демо",
+                "solutionsBtn": "Изучить решения",
+                
+                // Problem Section
+                "problemTitle": "От перегрузки данными к стратегическому преимуществу",
+                "problemText1": "Современные компании собирают огромные объемы данных, но извлечение значимой информации остается сложной задачей. Без правильных инструментов компании с трудом преобразуют информацию в действенные стратегии.",
+                "problemItem1": "Сложность определения ключевых факторов производительности",
+                "problemItem2": "Ограниченная видимость моделей поведения клиентов",
+                "problemItem3": "Ручные процессы отчетности отнимают ценное время",
+                "problemItem4": "Невозможность точно прогнозировать тенденции",
+                "problemItem5": "Изолированные данные препятствуют целостному взгляду на бизнес",
+                "problemText2": "Basair Data решает эти проблемы с помощью интуитивно понятной и мощной аналитики, разработанной для бизнес-пользователей.",
+                
+                // Client Types Section
+                "clientsTitle": "С кем мы работаем",
+                "clientsText": "Наши решения адаптированы для организаций, которые ценят принятие решений на основе данных и нуждаются в мощных, но доступных аналитических инструментах.",
+                "clientType1Title": "Растущие предприятия",
+                "clientType1Item1": "Компании с 50-500 сотрудниками",
+                "clientType1Item2": "Расширяются на новые рынки",
+                "clientType1Item3": "Стремятся к операционной эффективности",
+                "clientType1Item4": "Нуждаются в масштабируемых аналитических решениях",
+                "clientType2Title": "Лидеры отрасли",
+                "clientType2Item1": "Розничная торговля и электронная коммерция",
+                "clientType2Item2": "Финансовые организации",
+                "clientType2Item3": "Поставщики медицинских услуг",
+                "clientType2Item4": "Производственные компании",
+                "clientType3Title": "Организации с развитой культурой данных",
+                "clientType3Item1": "Устоявшаяся инфраструктура данных",
+                "clientType3Item2": "Ищут передовую аналитику",
+                "clientType3Item3": "Нуждаются в прогнозных возможностях",
+                "clientType3Item4": "Фокус на конкурентных преимуществах",
+                
+                // Solution Section
+                "solutionTitle": "Интеллектуальные аналитические решения",
+                "solutionText": "Наша платформа меняет способ взаимодействия компаний со своими данными, обеспечивая ясность и действенный интеллект на каждом уровне вашей организации.",
+                "solution1Title": "Автоматизированная аналитика",
+                "solution1Text": "Объединяйте разрозненные источники данных в единые панели мониторинга, которые обновляются автоматически. Сосредоточьтесь на решениях, а не на подготовке данных.",
+                "solution2Title": "Анализ первопричин",
+                "solution2Text": "Быстро определяйте, почему меняются ключевые показатели, с помощью нашего интеллектуального механизма анализа. Понять движущие силы вашей бизнес-производительности.",
+                "solution3Title": "Прогнозная аналитика",
+                "solution3Text": "Предвосхищайте будущие тенденции и возможности с помощью наших инструментов прогнозирования. Принимайте упреждающие решения на основе прогнозов, основанных на данных.",
+                
+                // Features Section
+                "featuresTitle": "Возможности платформы",
+                "feature1Title": "Анализ на основе ИИ",
+                "feature1Text": "Наша система автоматически выявляет значимые закономерности и корреляции в ваших данных, выделяя возможности, которые вы могли бы упустить.",
+                "feature2Title": "Отраслевые показатели",
+                "feature2Text": "Предварительно настроенные с соответствующими KPI для вашего сектора, с настраиваемыми панелями мониторинга, соответствующими вашим бизнес-целям.",
+                "feature4Title": "Мониторинг в реальном времени",
+                "feature4Text": "Отслеживайте производительность с помощью живых панелей мониторинга и автоматических оповещений. Быстро реагируйте на изменения в вашей бизнес-среде.",
+                
+                // CTA Section
+                "ctaTitle": "Начните преобразование данных",
+                "ctaText": "Узнайте, как Basair Data может помочь вашей организации принимать более обоснованные решения, выявлять новые возможности и стимулировать устойчивый рост.",
+                "consultationBtn": "Запланировать консультацию",
+                "featuresBtn": "Посмотреть функции платформы",
+                
+                // Footer
+                "footerDesc": "Интеллектуальные аналитические решения для прогрессивных компаний.",
+                "footerSolutions": "Решения",
+                "footerBI": "Бизнес-аналитика",
+                "footerAnalytics": "Аналитика производительности",
+                "footerModeling": "Прогнозное моделирование",
+                "footerIntegration": "Интеграция данных",
+                "footerCompany": "Компания",
+                "footerAbout": "Наши клиенты",
+                "footerPrivacy": "Политика конфиденциальности",
+                "footerTerms": "Условия обслуживания",
+                "footerConnect": "Свяжитесь с нами",
+                "footerSupport": "Поддержка",
+                "copyright": "© 2025 Basair Data. Все права защищены.",
+                
+                // Contact Modal
+                "contactTitle": "Свяжитесь с нашей командой",
+                "nameLabel": "Полное имя",
+                "emailLabel": "Адрес электронной почты",
+                "companyLabel": "Компания",
+                "messageLabel": "Чем мы можем вам помочь?",
+                "sendBtn": "Отправить сообщение"
             }
         };
 
-        // Current language
+        // Language management
         let currentLang = 'en';
-        
-        // Modal functionality
-        const modal = document.getElementById('contact-modal');
-        const contactLinks = document.querySelectorAll('#contact-link, #footer-contact-link, #demo-btn, #consultation-btn');
-        const closeModal = document.getElementById('close-modal');
-        
-        // Open modal when contact links are clicked
-        contactLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                modal.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
-            });
-        });
-        
-        // Close modal when X is clicked
-        closeModal.addEventListener('click', function() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-        
-        // Close modal when clicking outside the modal content
-        window.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-        
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.style.display === 'flex') {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-        
-        // Language toggle functionality
-        document.getElementById('langToggle').addEventListener('click', function() {
-            currentLang = currentLang === 'en' ? 'ar' : 'en';
-            translatePage(currentLang);
-            this.textContent = currentLang === 'en' ? 'العربية' : 'English';
-            this.setAttribute('aria-label', currentLang === 'en' ? 'Switch to Arabic' : 'Switch to English');
-        });
-        
-        // Function to translate the page
-        function translatePage(lang) {
-            // Update all elements with data-translate attribute
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            // Update all translatable elements
             document.querySelectorAll('[data-translate]').forEach(element => {
                 const key = element.getAttribute('data-translate');
                 if (translations[lang][key]) {
@@ -1221,70 +1339,114 @@
                 }
             });
             
-            // Update page direction for RTL languages
+            // Update current language display
+            document.getElementById('currentLang').textContent = 
+                lang === 'en' ? 'English' : 
+                lang === 'ar' ? 'العربية' : 'Русский';
+            
+            // Update direction for RTL languages
             if (lang === 'ar') {
-                document.body.setAttribute('dir', 'rtl');
-                document.body.setAttribute('lang', 'ar');
+                document.body.dir = 'rtl';
             } else {
-                document.body.setAttribute('dir', 'ltr');
-                document.body.setAttribute('lang', 'en');
+                document.body.dir = 'ltr';
+            }
+            
+            // Close language dropdown
+            document.getElementById('langDropdown').classList.remove('show');
+            
+            // Store language preference
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        // Initialize language
+        function initLanguage() {
+            const savedLang = localStorage.getItem('preferredLang');
+            if (savedLang && translations[savedLang]) {
+                changeLanguage(savedLang);
+            } else {
+                // Default to browser language if available, otherwise English
+                const browserLang = navigator.language.split('-')[0];
+                if (translations[browserLang]) {
+                    changeLanguage(browserLang);
+                } else {
+                    changeLanguage('en');
+                }
             }
         }
-        
-        // Mobile menu toggle
+
+        // DOM elements
+        const langToggle = document.getElementById('langToggle');
+        const langDropdown = document.getElementById('langDropdown');
+        const langOptions = document.querySelectorAll('.lang-option');
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const mainMenu = document.getElementById('main-menu');
-        
-        mobileMenuBtn.addEventListener('click', function() {
-            const isExpanded = this.getAttribute('aria-expanded') === 'true';
-            this.setAttribute('aria-expanded', !isExpanded);
-            mainMenu.classList.toggle('show');
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            if (!anchor.classList.contains('modal-trigger')) {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if(targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
-                        // Close mobile menu if open
-                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                        mainMenu.classList.remove('show');
-                        
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Update focus for accessibility
-                        targetElement.setAttribute('tabindex', '-1');
-                        targetElement.focus();
-                        setTimeout(() => targetElement.removeAttribute('tabindex'), 1000);
-                    }
-                });
-            }
-        });
-        
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const message = currentLang === 'en' 
-                ? 'Thank you for your message. We will contact you soon.' 
-                : 'شكراً على رسالتك. سنتواصل معك قريباً.';
-            alert(message);
-            this.reset();
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-        
-        // Initialize page
+        const contactLinks = document.querySelectorAll('#contact-link, #footer-contact-link, #demo-btn, #consultation-btn');
+        const contactModal = document.getElementById('contact-modal');
+        const closeModal = document.getElementById('close-modal');
+        const contactForm = document.getElementById('contactForm');
+
+        // Event listeners
         document.addEventListener('DOMContentLoaded', function() {
-            translatePage(currentLang);
+            initLanguage();
+            
+            // Language dropdown toggle
+            langToggle.addEventListener('click', function() {
+                langDropdown.classList.toggle('show');
+            });
+            
+            // Language selection
+            langOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                mainMenu.classList.toggle('show');
+                const isExpanded = mainMenu.classList.contains('show');
+                this.setAttribute('aria-expanded', isExpanded);
+            });
+            
+            // Contact modal
+            contactLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    contactModal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            closeModal.addEventListener('click', function() {
+                contactModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === contactModal) {
+                    contactModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Contact form submission
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // In a real implementation, you would send the form data to a server
+                alert('Thank you for your message! We will contact you soon.');
+                contactModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                contactForm.reset();
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.lang-selector')) {
+                    langDropdown.classList.remove('show');
+                }
+            });
         });
     </script>
 </body>
